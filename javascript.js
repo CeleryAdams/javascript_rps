@@ -4,6 +4,18 @@ function named getComputerChoice - randomly returns
 */
 
 
+function getComputerChoice(){
+    let x = Math.random();
+    if (x >= 0 && x < 0.33 ) {
+        return "Rock";
+    } else if (x >= 0.33 && x < 0.66) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
+}
+
+console.log(getComputerChoice());
 /*
 function called playRound that plays a single round of rock paper scissors -
 2 parameters - "playerSelection" and "computerSelection" - 
