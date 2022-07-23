@@ -23,7 +23,13 @@ function capitalize(playerInput) {
     return `${part1.toUpperCase()}${part2.toLowerCase()}`;
   }
 
-function roundResult(playerSelection, computerSelection){
+  /*
+function called playRound that plays a single round of rock paper scissors -
+2 parameters - "playerSelection" and "computerSelection" - 
+return a string that declares winner: "You lose! Paper beats Rock"
+*/
+
+function playRound(playerSelection, computerSelection){
     if (playerSelection === computerSelection) {
         return "tie"
 
@@ -31,13 +37,13 @@ function roundResult(playerSelection, computerSelection){
         ||(playerSelection === "Paper") && (computerSelection === "Scissors")
         ||(playerSelection ==="Scissors") && (computerSelection === "Rock"))
     {
-        return "you lose"
+        return "lose"
 
     } else if ((computerSelection === "Rock") && (playerSelection === "Paper")
     ||(computerSelection === "Paper") && (playerSelection === "Scissors")
     ||(computerSelection ==="Scissors") && (playerSelection === "Rock"))
     {
-        return "you win"
+        return "win"
     }
     else {
         return "error"
@@ -45,13 +51,9 @@ function roundResult(playerSelection, computerSelection){
 }
 
 
-/*
-function called playRound that plays a single round of rock paper scissors -
-2 parameters - "playerSelection" and "computerSelection" - 
-return a string that declares winner: "You lose! Paper beats Rock"
-*/
 
-function playRound (playerSelection, computerSelection) {
+
+/*function playRound (playerSelection, computerSelection) {
     let result = roundResult (playerSelection, computerSelection);
     if (result === "tie") {
         return "It's a tie!"
@@ -64,18 +66,41 @@ function playRound (playerSelection, computerSelection) {
     }
 
 }
+*/
 
+function game() {
 
+    let result = playRound(playerSelection, computerSelection);
+    let computerScore = 0;
+    let playerScore = 0;
+    if (result === "tie") {
+        console.log("It's a tie!")
+        console.log(`The score is Computer ${computerScore}, Player ${playerScore}.`);
+    } else if (result === "lose") {
+        computerScore++;
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        console.log(`The score is Computer ${computerScore}, Player ${playerScore}.`);
+    } else if (result === "win") {
+        playerScore++;
+        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+        console.log(`The score is Computer ${computerScore}, Player ${playerScore}.`);
+    } else {
+        console.log("Something went wrong.")
+    }
+}
 
-let playerSelection = capitalize("sCiSsors");
+let playerSelection = capitalize("rOck");
 let computerSelection = getComputerChoice();
 console.log(computerSelection);
 console.log(playerSelection);
-console.log(roundResult(playerSelection, computerSelection));
 console.log(playRound (playerSelection, computerSelection));
+console.log(game());
 
-
-
+//computerScore, playerScore
+//rounds 1-5
+//if computerScore>playerScore, You lose the game.
+//if playerScore>computerScore, You win the game.
+//if playerScore=computerScore, It's a tie.
 
 /*
 function called game() that calls the playRound function
