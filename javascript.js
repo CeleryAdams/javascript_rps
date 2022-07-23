@@ -23,7 +23,7 @@ function capitalize(playerInput) {
     return `${part1.toUpperCase()}${part2.toLowerCase()}`;
   }
 
-function roundResult (playerSelection, computerSelection){
+function roundResult(playerSelection, computerSelection){
     if (playerSelection === computerSelection) {
         return "tie"
 
@@ -44,11 +44,6 @@ function roundResult (playerSelection, computerSelection){
     }
 }
 
-const playerSelection = "Scissors";
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
-console.log(playerSelection);
-console.log(roundResult(playerSelection, computerSelection));
 
 /*
 function called playRound that plays a single round of rock paper scissors -
@@ -57,15 +52,27 @@ return a string that declares winner: "You lose! Paper beats Rock"
 */
 
 function playRound (playerSelection, computerSelection) {
-//Display text:
-    //if result is "tie": "It's a tie!"
-    //if result is "you lose": "You lose! (computer selection) beats (player selection)."
-    //if result is "you win": "You win! (player selection) beats (computer selection)."
-    //else "something went wrong"
+    let result = roundResult (playerSelection, computerSelection);
+    if (result === "tie") {
+        return "It's a tie!"
+    } else if (result === "you lose") {
+        return `You lose! ${computerSelection} beats ${playerSelection}.`;
+    } else if (result === "you win") {
+        return `You win! ${playerSelection} beats ${computerSelection}.`;
+    } else {
+        return "Something went wrong."
+    }
 
 }
 
 
+
+let playerSelection = capitalize("sCiSsors");
+let computerSelection = getComputerChoice();
+console.log(computerSelection);
+console.log(playerSelection);
+console.log(roundResult(playerSelection, computerSelection));
+console.log(playRound (playerSelection, computerSelection));
 
 
 
