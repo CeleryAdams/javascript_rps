@@ -1,3 +1,6 @@
+
+
+
 function getComputerChoice(){
     let x = Math.random();
     if (x >= 0 && x < 0.33 ) {
@@ -9,7 +12,7 @@ function getComputerChoice(){
     }
 }
 
-
+/*
 function capitalize(playerInput) {
 
     if (playerInput === null) {
@@ -20,64 +23,72 @@ function capitalize(playerInput) {
     let part2 = playerInput.slice(1);
     return `${part1.toUpperCase()}${part2.toLowerCase()}`;
 }
+*/
+
 
 function playRound(playerSelection, computerSelection){
-    if (playerSelection === computerSelection) {
-        return "tie"
+    console.log(playerSelection);
+    console.log(computerSelection);
+    let result;
 
-    } else if ((playerSelection === "Rock") && (computerSelection === "Paper")
+    if (playerSelection===computerSelection) {
+        console.log("it's a tie!");
+        result= "tie";
+    }
+
+    if ((playerSelection === "Rock") && (computerSelection === "Paper")
         ||(playerSelection === "Paper") && (computerSelection === "Scissors")
         ||(playerSelection ==="Scissors") && (computerSelection === "Rock"))
     {
-        return "lose"
+        console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
+        result= "lose";
 
     } else if ((computerSelection === "Rock") && (playerSelection === "Paper")
     ||(computerSelection === "Paper") && (playerSelection === "Scissors")
     ||(computerSelection ==="Scissors") && (playerSelection === "Rock"))
     {
-        return "win"
-    }
-    else {
-        return "error"
-    }
+        console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+        result= "win";
 }
+console.log(game(result));
 
-function game() {
+};
+
+const btnRock = document.querySelector('#btnRock');
+btnRock.addEventListener('click', function() {
+    playRound("Rock", getComputerChoice());
+});
+btnRock.addEventListener('click', game);
+
+const btnPaper = document.querySelector('#btnPaper');
+btnPaper.addEventListener('click', function() {
+    playRound("Paper", getComputerChoice());
+});
+
+const btnScissors = document.querySelector('#btnScissors');
+btnScissors.addEventListener('click', function() {
+    playRound("Scissors", getComputerChoice());
+});
+
+
+
+function game(result) {
     let computerScore = 0;
     let playerScore = 0;
-    let roundNumber = 0;
-    for (let i = 0; i < 5; i++) {
-    roundNumber++
-    let computerSelection = getComputerChoice();
-    let playerInput = prompt(`Round ${roundNumber}`);
-    let playerSelection = capitalize(playerInput);
 
-    if (playRound(playerSelection, computerSelection) === "tie") {
-            console.log("It's a tie!")
-            console.log(`The score is Computer ${computerScore}, Player ${playerScore}.`);
-        } else if (playRound(playerSelection, computerSelection) === "lose") {
+    if (result==="lose") {
             computerScore++;
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
-            console.log(`The score is Computer ${computerScore}, Player ${playerScore}.`);
-        } else if (playRound(playerSelection, computerSelection) === "win") {
+        } else if (result==="win") {
             playerScore++;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
-            console.log(`The score is Computer ${computerScore}, Player ${playerScore}.`);
-        } else if (playerSelection === null) { 
-            alert("Game over.");
-            break;
-        } else {
-            console.log("Something went wrong.")
+        } else if (result==="tie"){
+            return;
         }
-    }
-    
-    if (computerScore > playerScore) {
-        console.log("You lose the game.");
-    } else if (playerScore > computerScore) {
-        console.log("You win the game.");
-    } else {
-        console.log("It's a tie.");
-    }
-}
 
-console.log(game());
+return(`computer: ${computerScore}, player: ${playerScore}`);
+    /*    
+    if (computerScore === 5) {
+        console.log("You lose the game.");
+    } else if (playerScore === 5) {
+        console.log("You win the game.");
+}*/
+};
