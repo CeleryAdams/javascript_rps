@@ -25,11 +25,12 @@ function capitalize(playerInput) {
 }
 */
 
+let computerScore = 0;
+let playerScore = 0;
 
 function playRound(playerSelection, computerSelection){
     console.log(playerSelection);
     console.log(computerSelection);
-    let result;
 
     if (playerSelection===computerSelection) {
         console.log("it's a tie!");
@@ -50,45 +51,74 @@ function playRound(playerSelection, computerSelection){
         console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
         result= "win";
 }
-console.log(game(result));
-
 };
 
 const btnRock = document.querySelector('#btnRock');
 btnRock.addEventListener('click', function() {
     playRound("Rock", getComputerChoice());
 });
-btnRock.addEventListener('click', game);
+btnRock.addEventListener('click', function() {
+    console.log(game(result));
+});
+btnRock.addEventListener('click', function() {
+    console.log(outcome());
+});
 
 const btnPaper = document.querySelector('#btnPaper');
 btnPaper.addEventListener('click', function() {
     playRound("Paper", getComputerChoice());
 });
+btnPaper.addEventListener('click', function() {
+    console.log(game(result));
+});
+btnPaper.addEventListener('click', function() {
+    console.log(outcome());
+});
+
 
 const btnScissors = document.querySelector('#btnScissors');
 btnScissors.addEventListener('click', function() {
     playRound("Scissors", getComputerChoice());
 });
+btnScissors.addEventListener('click', function() {
+    console.log(game(result));
+});
+btnScissors.addEventListener('click', function() {
+    console.log(outcome());
+});
+
+
 
 
 
 function game(result) {
-    let computerScore = 0;
-    let playerScore = 0;
-
     if (result==="lose") {
-            computerScore++;
+            computerScore += 1;
+            return(`computer: ${computerScore}, player: ${playerScore}`);
         } else if (result==="win") {
-            playerScore++;
+            playerScore += 1;
+            return(`computer: ${computerScore}, player: ${playerScore}`);
+
         } else if (result==="tie"){
-            return;
+        return(`computer: ${computerScore}, player: ${playerScore}`);
         }
 
-return(`computer: ${computerScore}, player: ${playerScore}`);
-    /*    
+    };
+
+function outcome() {
     if (computerScore === 5) {
-        console.log("You lose the game.");
+        console.log("YOU LOSE!!!");
     } else if (playerScore === 5) {
-        console.log("You win the game.");
-}*/
-};
+        console.log("YOU WIN!!!");
+    } else return;
+}
+
+
+
+/*while (computerScore <= 5 || playerScore <= 5) {
+    if (computerScore < playerScore) {
+        console.log("You lose the game.");
+    } else if (playerScore > computerScore) {
+        console.log("You win the game.");}
+ };
+*/
